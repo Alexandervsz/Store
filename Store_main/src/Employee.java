@@ -6,16 +6,7 @@ public class Employee implements Employee_Interface {
     private double salary;
     private boolean is_working;
     private int hours_worked = 0;
-    private String bank_number;
     private LocalDateTime shift_start;
-
-    public String getBank_number() {
-        return bank_number;
-    }
-
-    public void setBank_number(String bank_number) {
-        this.bank_number = bank_number;
-    }
 
     public Employee(int employee_number, String name, double salary) {
         Employee_number = employee_number;
