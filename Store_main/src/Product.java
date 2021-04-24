@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Product {
     private String productname;
     private double price;
@@ -37,10 +39,29 @@ public class Product {
     }
 
 
-    public Product(String productname, double price, String productcode) {
+    public Product(String productname, double price, String productcode, int stock) {
         this.productname = productname;
         this.price = price;
         this.productcode = productcode;
+        this.stock = stock;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productcode.equals(product.productcode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productcode);
+    }
+
+    @Override
+    public String toString() {
+        return productname+", nu voor €"+price+"! Nog "+stock+" op voorraad.";
     }
 
     public void restock(int amount){
