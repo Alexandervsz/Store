@@ -5,7 +5,7 @@ public class Employee implements Employee_Interface {
     private String name;
     private double salary;
     private boolean is_working;
-    private int hours_worked;
+    private int hours_worked = 0;
     private String bank_number;
     private LocalDateTime shift_start;
 
@@ -73,17 +73,28 @@ public class Employee implements Employee_Interface {
 
     @Override
     public void check_in() {
+        if (!is_working) {
+            shift_start = LocalDateTime.now();
+            is_working = true;
+        }
+
 
     }
 
     @Override
     public void check_out() {
+        if (is_working) {
+            //hours_worked += LocalDateTime.now() - shift_start;
+            is_working = false;
+        }
 
     }
 
     @Override
     public void pay() {
+        if (hours_worked > 0){
         double payment = salary * hours_worked;
-        System.out.println("Sent €"+payment+ "to "+ name);
+        System.out.println("Sent €" + payment + "to " + name);
+        hours_worked = 0;}
     }
 }
