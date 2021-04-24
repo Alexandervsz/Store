@@ -1,4 +1,4 @@
-public class Cashier extends Employee {
+public class Cashier{
     private int register_number;
     private double avg_cash_diff;
 
@@ -18,7 +18,5 @@ public class Cashier extends Employee {
         this.avg_cash_diff = avg_cash_diff;
     }
 
-    public Cashier(int employee_number, String name, double salary) {
-        super(employee_number, name, salary);
-    }
+
 }
