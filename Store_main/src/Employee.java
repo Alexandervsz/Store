@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Employee implements Employee_Interface {
     private int Employee_number;
@@ -87,5 +88,18 @@ public class Employee implements Employee_Interface {
         double payment = salary * hours_worked;
         System.out.println("Sent €" + payment + "to " + name);
         hours_worked = 0;}
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Employee_number == employee.Employee_number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Employee_number);
     }
 }
