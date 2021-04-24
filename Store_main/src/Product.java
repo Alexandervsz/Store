@@ -3,10 +3,10 @@ import java.util.Objects;
 public class Product {
     private String productname;
     private double price;
-    private int stock;
+    private int amount;
     private String productcode;
 
-    public String getProductname() {
+    public String getProductName() {
         return productname;
     }
 
@@ -22,12 +22,12 @@ public class Product {
         this.price = price;
     }
 
-    public int getStock() {
-        return stock;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getProductcode() {
@@ -39,11 +39,11 @@ public class Product {
     }
 
 
-    public Product(String productname, double price, String productcode, int stock) {
+    public Product(String productname, double price, String productcode, int amount) {
         this.productname = productname;
         this.price = price;
         this.productcode = productcode;
-        this.stock = stock;
+        this.amount = amount;
     }
 
     @Override
@@ -61,10 +61,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return productname+", nu voor €"+price+"! Nog "+stock+" op voorraad.";
+        return productname+", nu voor €"+price+"! Nog "+amount+" op voorraad.";
     }
 
-    public void restock(int amount){
-        setStock(getStock()+amount);
-    }
+
 }
