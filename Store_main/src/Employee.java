@@ -1,18 +1,27 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Employee implements Employee_Interface {
     private int Employee_number;
     private String name;
-    private double salary;
     private boolean is_working;
     private int hours_worked = 0;
     private LocalDateTime shift_start;
+    private Inventory inventory;
 
-    public Employee(int employee_number, String name, double salary) {
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public Employee(int employee_number, String name, Inventory inventory) {
         Employee_number = employee_number;
         this.name = name;
-        this.salary = salary;
+        this.inventory = inventory;
     }
 
     public int getEmployee_number() {
@@ -31,13 +40,6 @@ public class Employee implements Employee_Interface {
         this.name = name;
     }
 
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
 
     public boolean isIs_working() {
         return is_working;
@@ -63,6 +65,10 @@ public class Employee implements Employee_Interface {
         this.shift_start = shift_start;
     }
 
+    public  void addItemToInventory(Product product){
+        inventory.addProduct(product);
+    }
+
     @Override
     public void check_in() {
         if (!is_working) {
@@ -82,13 +88,6 @@ public class Employee implements Employee_Interface {
 
     }
 
-    @Override
-    public void pay() {
-        if (hours_worked > 0){
-        double payment = salary * hours_worked;
-        System.out.println("Sent €" + payment + "to " + name);
-        hours_worked = 0;}
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -101,5 +100,21 @@ public class Employee implements Employee_Interface {
     @Override
     public int hashCode() {
         return Objects.hash(Employee_number);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("Hallo, wat wil je kopen?\nIk heb in de aanbieding:\n");
+        for (Product product: inventory.getProducts()){
+            string.append( product.getProductName());
+            string.append(", waarvan ik er nog ");
+            string.append(product.getAmount());
+            string.append(" van over heb.\n");
+            string.append("Ze kosten ieder ");
+            string.append(product.getPrice());
+            string.append("\n");
+        }
+        return string.toString();
     }
 }
