@@ -16,8 +16,8 @@ public class CombineItem {
     public Product addItems() {
         String combined = product1.getProductName() + amount1 + product2.getProductName() + amount2;
         return switch (combined) {
-            case "H2O1", "O1H2" -> new Product("Water", 200.0, "h2o", 1);
-            case "C1O2", "O2C1" -> new Product("Koolzuur", 1000.0, "co2", 1);
+            case "H2O1", "O1H2" -> new Product("water", 200.0, "h2o", 1);
+            case "C1O2", "O2C1" -> new Product("koolzuur", 1000.0, "co2", 1);
             default -> null;
         };
     }
