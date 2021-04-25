@@ -5,12 +5,7 @@ public class Employee extends Inventory {
         StringBuilder string = new StringBuilder();
         string.append("Hallo, wat wil je kopen?\nIk heb in de aanbieding:\n");
         for (Product product : getProducts()) {
-            string.append(product.getProductName());
-            string.append(", waarvan ik er nog ");
-            string.append(product.getAmount());
-            string.append(" van heb.\n");
-            string.append("Ze kosten ieder ");
-            string.append(product.getPrice());
+            string.append(product.toString());
             string.append("\n");
         }
         return string.toString();
