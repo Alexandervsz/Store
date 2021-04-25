@@ -1,11 +1,11 @@
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Customer extends Inventory{
+public class Customer extends Inventory {
     private String name;
     private LocalDateTime last_seen;
     private double total_spent;
-    private double money = 200.0;
+    private double money = 200;
 
     public double getMoney() {
         return money;
@@ -21,7 +21,6 @@ public class Customer extends Inventory{
     }
 
 
-
     public String getName() {
         return name;
     }
@@ -29,7 +28,6 @@ public class Customer extends Inventory{
     public void setName(String name) {
         this.name = name;
     }
-
 
 
     public LocalDateTime getLast_seen() {
@@ -53,11 +51,11 @@ public class Customer extends Inventory{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Double.compare(customer.total_spent, total_spent) == 0  && Objects.equals(name, customer.name) && Objects.equals(last_seen, customer.last_seen);
+        return Double.compare(customer.total_spent, total_spent) == 0 && Objects.equals(name, customer.name) && Objects.equals(last_seen, customer.last_seen);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( name, last_seen, total_spent);
+        return Objects.hash(name, last_seen, total_spent);
     }
 }
