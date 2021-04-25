@@ -104,7 +104,7 @@ public class Main {
                 customer.updateProductStock(product2, amount2 * -1);
                 if (customer.checkInventory(newProduct)) {
                     Product oldProduct = customer.fetchProduct(newProduct);
-                    customer.updateProductStock(oldProduct, oldProduct.getAmount() + 1);
+                    customer.updateProductStock(oldProduct, 1);
                 } else {
                     customer.addProduct(newProduct);
                 }
