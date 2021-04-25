@@ -78,6 +78,7 @@ public class Shop {
             }
         }
     }
+
     public void combineItems() {
 
         if (getCustomerItems(customer, 1)) {
@@ -136,8 +137,9 @@ public class Shop {
 
 
         }
-        if(!found){
-            System.out.println("Dat product is er niet...");}
+        if (!found) {
+            System.out.println("Dat product is er niet...");
+        }
         return foundProduct;
     }
 
