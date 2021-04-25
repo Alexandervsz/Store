@@ -8,7 +8,7 @@ public class Employee extends Inventory {
             string.append(product.getProductName());
             string.append(", waarvan ik er nog ");
             string.append(product.getAmount());
-            string.append(" van over heb.\n");
+            string.append(" van heb.\n");
             string.append("Ze kosten ieder ");
             string.append(product.getPrice());
             string.append("\n");
