@@ -5,15 +5,12 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Employee employee = new Employee(1, "Bob");
+        Employee employee = new Employee();
         Customer customer;
         employee.addProduct(new Product("H", 50.0, "H", 50));
         employee.addProduct(new Product("O", 50.0, "O", 100));
         employee.addProduct(new Product("C", 500.0, "C", 50));
-        System.out.println("Welkom, wat is je naam?");
-        Scanner scanner = new Scanner(System.in);
-        String username = scanner.nextLine();
-        customer = new Customer(username);
+        customer = new Customer();
         PrintIntro(employee, customer);
 
 
@@ -104,34 +101,33 @@ public class Main {
 
     public static void CombineItems(Employee employee, Customer customer) {
 
-        if (getCustomerItems(customer)){
-        System.out.println("Kies je eerste product.");
-        Product product1 = FindProduct(customer);
-        System.out.println("Kies je hoeveelheid eerste product.");
-        int amount1 = FindInt(customer, product1);
-        System.out.println("Kies je tweede product.");
-        Product product2 = FindProduct(customer);
-        System.out.println("Kies je hoeveelheid tweede product.");
-        int amount2 = FindInt(customer, product2);
-        CombineItem itemCombiner = new CombineItem(product1, product2, amount1, amount2);
-        Product newProduct = itemCombiner.addItems();
-        if (newProduct != null) {
-            System.out.println("Je hebt " + newProduct.getProductName() + " gemaakt!");
-            customer.updateProductStock(product1, amount1 * -1 );
-            customer.updateProductStock(product2, amount2 * -1 );
-            if (customer.checkInventory(newProduct)){
-                Product oldProduct = customer.fetchProduct(newProduct);
-                customer.updateProductStock(oldProduct, oldProduct.getAmount() + 1);
-            }
-            else{
-                customer.addProduct(newProduct);
-            }
-        } else {
-            System.out.println("Tot je teleurstelling gebeurt er niets.");
+        if (getCustomerItems(customer)) {
+            System.out.println("Kies je eerste product.");
+            Product product1 = FindProduct(customer);
+            System.out.println("Kies je hoeveelheid eerste product.");
+            int amount1 = FindInt(customer, product1);
+            System.out.println("Kies je tweede product.");
+            Product product2 = FindProduct(customer);
+            System.out.println("Kies je hoeveelheid tweede product.");
+            int amount2 = FindInt(customer, product2);
+            CombineItem itemCombiner = new CombineItem(product1, product2, amount1, amount2);
+            Product newProduct = itemCombiner.addItems();
+            if (newProduct != null) {
+                System.out.println("Je hebt " + newProduct.getProductName() + " gemaakt!");
+                customer.updateProductStock(product1, amount1 * -1);
+                customer.updateProductStock(product2, amount2 * -1);
+                if (customer.checkInventory(newProduct)) {
+                    Product oldProduct = customer.fetchProduct(newProduct);
+                    customer.updateProductStock(oldProduct, oldProduct.getAmount() + 1);
+                } else {
+                    customer.addProduct(newProduct);
+                }
+            } else {
+                System.out.println("Tot je teleurstelling gebeurt er niets.");
 
-        }
-        PrintIntro(employee, customer);}
-        else{
+            }
+            PrintIntro(employee, customer);
+        } else {
             PrintIntro(employee, customer);
         }
 
@@ -172,7 +168,8 @@ public class Main {
         return -1;
 
     }
-    public static boolean getCustomerItems(Customer customer){
+
+    public static boolean getCustomerItems(Customer customer) {
         System.out.print("Je hebt ");
         if ((customer.getProducts().size()) > 0) {
             System.out.println("\n");
@@ -197,25 +194,24 @@ public class Main {
 
     }
 
-    public static void SellItems(Employee employee, Customer customer){
-        if(getCustomerItems(customer)){
+    public static void SellItems(Employee employee, Customer customer) {
+        if (getCustomerItems(customer)) {
             System.out.println("Welk product wil je verkopen?");
             Product product1 = FindProduct(customer);
             System.out.println("Hoe veel wil je er verkopen?");
             int amount1 = FindInt(customer, product1);
-            if (employee.checkInventory(product1)){
-            Product oldProduct = employee.fetchProduct(product1);
-            employee.updateProductStock(oldProduct, amount1);}
-            else{
+            if (employee.checkInventory(product1)) {
+                Product oldProduct = employee.fetchProduct(product1);
+                employee.updateProductStock(oldProduct, amount1);
+            } else {
                 Product employeeProduct = new Product(product1.getProductName(), product1.getPrice(), product1.getProductcode(), amount1);
                 employee.addProduct(employeeProduct);
             }
-            customer.updateProductStock(product1,amount1 * -1);
+            customer.updateProductStock(product1, amount1 * -1);
             customer.setMoney(customer.getMoney() + product1.getPrice() * amount1);
             System.out.println("Bedankt!");
         }
         PrintIntro(employee, customer);
-
 
 
     }

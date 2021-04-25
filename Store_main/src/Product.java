@@ -10,16 +10,9 @@ public class Product {
         return productname;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname;
-    }
 
     public double getPrice() {
         return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public int getAmount() {
@@ -32,10 +25,6 @@ public class Product {
 
     public String getProductcode() {
         return productcode;
-    }
-
-    public void setProductcode(String productcode) {
-        this.productcode = productcode;
     }
 
 
@@ -61,7 +50,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return productname+", nu voor €"+price+"! Nog "+amount+" op voorraad.";
+        return productname + ", nu voor €" + price + "! Nog " + amount + " op voorraad.";
     }
 
 
