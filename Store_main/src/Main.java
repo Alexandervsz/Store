@@ -23,11 +23,13 @@ public class Main {
         System.out.println("Wat wil je doen?");
         System.out.println("Dingen kopen (1):");
         System.out.println("Dingen combineren (2):");
+        System.out.println("Dingen verkopen (3):");
         Scanner scanner2 = new Scanner(System.in);
         int userChoice = scanner2.nextInt();
         switch (userChoice) {
             case 1 -> OpenShop(employee, customer);
             case 2 -> CombineItems(employee, customer);
+            case 3 -> SellItems(employee, customer);
             default -> PrintIntro(employee, customer);
         }
 
@@ -37,7 +39,6 @@ public class Main {
 
     public static void OpenShop(Employee employee, Customer customer) {
         System.out.println(employee.toString());
-        System.out.println(employee.getProducts());
         System.out.println("Je hebt zelf nog " + customer.getMoney() + " over.");
         boolean found = false;
         Product soldProduct = null;
@@ -101,27 +102,8 @@ public class Main {
     }
 
     public static void CombineItems(Employee employee, Customer customer) {
-        System.out.print("Je hebt ");
-        StringBuilder string = new StringBuilder();
-        if ((customer.getProducts().size()) > 0) {
-            System.out.println("\n");
-        } else {
-            System.out.println("niets.\n");
-            PrintIntro(employee, customer);
-        }
 
-        for (Product product : customer.getProducts()) {
-            string.append(product.getProductName());
-            string.append(", ");
-            string.append(product.getAmount());
-            string.append(" stuks.");
-            string.append("\n");
-
-
-        }
-
-        System.out.println(string);
-        boolean found = false;
+        if (getCustomerItems(customer)){
         System.out.println("Kies je eerste product.");
         Product product1 = FindProduct(customer);
         System.out.println("Kies je hoeveelheid eerste product.");
@@ -147,7 +129,10 @@ public class Main {
             System.out.println("Tot je teleurstelling gebeurt er niets.");
 
         }
-        PrintIntro(employee, customer);
+        PrintIntro(employee, customer);}
+        else{
+            PrintIntro(employee, customer);
+        }
 
 
     }
@@ -184,6 +169,53 @@ public class Main {
             FindInt(customer, product);
         }
         return -1;
+
+    }
+    public static boolean getCustomerItems(Customer customer){
+        System.out.print("Je hebt ");
+        if ((customer.getProducts().size()) > 0) {
+            System.out.println("\n");
+        } else {
+            System.out.println("niets.\n");
+            return false;
+        }
+        StringBuilder string = new StringBuilder();
+
+        for (Product product : customer.getProducts()) {
+            string.append(product.getProductName());
+            string.append(", ");
+            string.append(product.getAmount());
+            string.append(" stuks.");
+            string.append("\n");
+
+
+        }
+
+        System.out.println(string);
+        return true;
+
+    }
+
+    public static void SellItems(Employee employee, Customer customer){
+        if(getCustomerItems(customer)){
+            System.out.println("Welk product wil je verkopen?");
+            Product product1 = FindProduct(customer);
+            System.out.println("Hoe veel wil je er verkopen?");
+            int amount1 = FindInt(customer, product1);
+            if (employee.checkInventory(product1)){
+            Product oldProduct = employee.fetchProduct(product1);
+            employee.updateProductStock(oldProduct, amount1);}
+            else{
+                Product employeeProduct = new Product(product1.getProductName(), product1.getPrice(), product1.getProductcode(), amount1);
+                employee.addProduct(employeeProduct);
+            }
+            customer.updateProductStock(product1,amount1 * -1);
+            customer.setMoney(customer.getMoney() + product1.getPrice() * amount1);
+            System.out.println("Bedankt!");
+        }
+        PrintIntro(employee, customer);
+
+
 
     }
 }
