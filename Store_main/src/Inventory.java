@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Inventory {
+public class Inventory implements InventoryInterface {
     private ArrayList<Product> products = new ArrayList<>();
 
 
@@ -8,17 +8,28 @@ public class Inventory {
         return products;
     }
 
+
     public void addProduct(Product product) {
         this.products.add(product);
     }
 
-    public void updateProductStock(Product product, int amount){
+    public void updateProductStock(Product product, int amount) {
         this.products.remove(product);
-        product.setAmount(product.getAmount() -amount);
+        product.setAmount(product.getAmount() - amount);
         this.products.add(product);
     }
 
-    public void removeProduct(Product product){
+    public void removeProduct(Product product) {
         this.products.remove(product);
     }
+
+    public Product fetchProduct(Product product) {
+        for (Product iter_product: products){
+            if (iter_product.equals(product)){
+                return iter_product;
+            }
+        }
+        return null;
+    }
+
 }
