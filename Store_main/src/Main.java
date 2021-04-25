@@ -8,7 +8,8 @@ public class Main {
         Employee employee = new Employee(1, "Bob");
         Customer customer;
         employee.addProduct(new Product("H", 50.0, "H", 50));
-        employee.addProduct(new Product("O", 50.0, "O", 50));
+        employee.addProduct(new Product("O", 50.0, "O", 100));
+        employee.addProduct(new Product("C", 500.0, "C", 50));
         System.out.println("Welkom, wat is je naam?");
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
