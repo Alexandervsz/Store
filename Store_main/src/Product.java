@@ -6,6 +6,13 @@ public class Product {
     private int amount;
     private String productcode;
 
+    public Product(String productname, double price, String productcode, int amount) {
+        this.productname = productname;
+        this.price = price;
+        this.productcode = productcode;
+        this.amount = amount;
+    }
+
     public String getProductName() {
         return productname;
     }
@@ -23,17 +30,10 @@ public class Product {
         this.amount = amount;
     }
 
-    public String getProductcode() {
+    public String getProductCode() {
         return productcode;
     }
 
-
-    public Product(String productname, double price, String productcode, int amount) {
-        this.productname = productname;
-        this.price = price;
-        this.productcode = productcode;
-        this.amount = amount;
-    }
 
     @Override
     public boolean equals(Object o) {
