@@ -1,12 +1,11 @@
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Customer {
+public class Customer extends Inventory{
     private String name;
     private LocalDateTime last_seen;
     private double total_spent;
-    private double money = 100.0;
-    private Inventory inventory;
+    private double money = 200.0;
 
     public double getMoney() {
         return money;
@@ -16,17 +15,9 @@ public class Customer {
         this.money = money;
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
-
-    public Customer(String name, Inventory inventory) {
+    public Customer(String name) {
         this.name = name;
-        this.inventory = inventory;
     }
 
 
