@@ -15,8 +15,11 @@ public class Inventory implements InventoryInterface {
 
     public void updateProductStock(Product product, int amount) {
         this.products.remove(product);
-        product.setAmount(product.getAmount() - amount);
-        this.products.add(product);
+        product.setAmount(product.getAmount() + amount);
+        if (product.getAmount() != 0) {
+
+            this.products.add(product);
+        }
     }
 
     public void removeProduct(Product product) {
@@ -24,12 +27,23 @@ public class Inventory implements InventoryInterface {
     }
 
     public Product fetchProduct(Product product) {
-        for (Product iter_product: products){
-            if (iter_product.equals(product)){
+        for (Product iter_product : products) {
+            if (iter_product.hashCode() == product.hashCode()
+            ) {
                 return iter_product;
             }
         }
+        System.out.println("false");
         return null;
+    }
+
+    public boolean checkInventory(Product product) {
+        for (Product iterProduct : products) {
+            if (product.hashCode() == iterProduct.hashCode()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
