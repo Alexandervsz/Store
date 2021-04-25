@@ -132,6 +132,7 @@ public class Main {
                     break;
                 }
             }
+            System.out.println("Dat product heb ik niet...");
         }
         return foundProduct;
     }
@@ -197,7 +198,7 @@ public class Main {
             }
             customer.updateProductStock(product1, amount1 * -1);
             customer.setMoney(customer.getMoney() + product1.getPrice() * amount1);
-            System.out.println("Bedankt!");
+            System.out.println("Bedankt!\n");
         }
         printIntro(employee, customer);
     }
