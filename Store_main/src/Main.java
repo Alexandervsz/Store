@@ -132,8 +132,11 @@ public class Main {
                     break;
                 }
             }
-            System.out.println("Dat product is er niet...");
+
+
         }
+        if(!found){
+        System.out.println("Dat product is er niet...");}
         return foundProduct;
     }
 
