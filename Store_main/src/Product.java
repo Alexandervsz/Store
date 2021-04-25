@@ -1,20 +1,20 @@
 import java.util.Objects;
 
 public class Product {
-    private String productname;
+    private String name;
     private double price;
     private int amount;
-    private String productcode;
+    private String code;
 
-    public Product(String productname, double price, String productcode, int amount) {
-        this.productname = productname;
+    public Product(String name, double price, String code, int amount) {
+        this.name = name;
         this.price = price;
-        this.productcode = productcode;
+        this.code = code;
         this.amount = amount;
     }
 
     public String getProductName() {
-        return productname;
+        return name;
     }
 
 
@@ -31,7 +31,7 @@ public class Product {
     }
 
     public String getProductCode() {
-        return productcode;
+        return code;
     }
 
 
@@ -40,17 +40,17 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return productcode.equals(product.productcode);
+        return code.equals(product.code);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productcode);
+        return Objects.hash(code);
     }
 
     @Override
     public String toString() {
-        return productname + ", nu voor €" + price + "! Nog " + amount + " op voorraad.";
+        return name + ", nu voor €" + price + "! Nog " + amount + " op voorraad.";
     }
 
 
