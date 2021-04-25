@@ -18,6 +18,7 @@ public class CombineItem {
         return switch (combined) {
             case "H2O1", "O1H2" -> new Product("water", 200.0, "h2o", 1);
             case "C1O2", "O2C1" -> new Product("koolzuur", 1000.0, "co2", 1);
+            case "C4H10", "H10C4" -> new Product("butaan", 10000.0, "c4h10", 1);
             default -> null;
         };
     }
