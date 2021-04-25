@@ -59,20 +59,18 @@ public class Shop {
                     }
                 }
                 customer.setMoney(money - totalprice);
-                System.out.println("Bedankt!");
+                System.out.println("Bedankt!\n");
                 sold = true;
                 printIntro();
 
             } else {
                 if (money < totalprice) {
-                    System.out.println(money);
-                    System.out.println(totalprice);
-                    System.out.println("Je hebt te weinig geld.");
+                    System.out.println("Je hebt te weinig geld.\n");
 
                 } else if (employee.fetchProduct(soldProduct).getAmount() < userChoice) {
                     System.out.println("Ik heb er maar " + employee.fetchProduct(soldProduct).getAmount() + "\n");
                 } else if (userChoice < 0) {
-                    System.out.println("ongeldige invoer, verkoop gestaakt.");
+                    System.out.println("ongeldige invoer, verkoop gestaakt.\n");
                 }
                 openShop();
             }
@@ -117,9 +115,8 @@ public class Shop {
     }
 
     public Product findProduct(Inventory customer) {
-        Product foundProduct = null;
-        boolean found = false;
-        while (!found) {
+
+        while (true) {
             System.out.println("Voer hier je input in: ");
             Scanner scanner = new Scanner(System.in);
             String userChoice = scanner.nextLine();
@@ -129,18 +126,15 @@ public class Shop {
 
             for (Product product : products) {
                 if (userChoice.equals(product.getProductName()) || userChoice.toUpperCase(Locale.ROOT).equals(product.getProductName())) {
-                    found = true;
-                    foundProduct = product;
-                    break;
+
+                    Product foundProduct = product;
+                    return foundProduct;
                 }
             }
-
-
-        }
-        if (!found) {
             System.out.println("Dat product is er niet...");
+
+
         }
-        return foundProduct;
     }
 
     public int findInt(Inventory customer, Product product) {
@@ -191,7 +185,10 @@ public class Shop {
             Product product1 = findProduct(customer);
             System.out.println("Hoeveel wil je er verkopen?");
             int amount1 = findInt(customer, product1);
-            if (amount1 < 0) {
+            if (amount1 < 0 || amount1 > customer.fetchProduct(product1).getAmount()) {
+                if(amount1 > customer.fetchProduct(product1).getAmount()){
+                    System.out.println("Je hebt er niet zo veel.");
+                }
                 printIntro();
                 return;
             }
