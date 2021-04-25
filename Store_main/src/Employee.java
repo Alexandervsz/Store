@@ -1,26 +1,15 @@
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Employee implements Employee_Interface {
+public class Employee extends Inventory {
     private int Employee_number;
     private String name;
-    private boolean is_working;
-    private int hours_worked = 0;
-    private LocalDateTime shift_start;
-    private Inventory inventory;
 
-    public Inventory getInventory() {
-        return inventory;
-    }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
 
-    public Employee(int employee_number, String name, Inventory inventory) {
+    public Employee(int employee_number, String name) {
         Employee_number = employee_number;
         this.name = name;
-        this.inventory = inventory;
     }
 
     public int getEmployee_number() {
@@ -40,52 +29,6 @@ public class Employee implements Employee_Interface {
     }
 
 
-    public boolean isIs_working() {
-        return is_working;
-    }
-
-    public void setIs_working(boolean is_working) {
-        this.is_working = is_working;
-    }
-
-    public int getHours_worked() {
-        return hours_worked;
-    }
-
-    public void setHours_worked(int hours_worked) {
-        this.hours_worked = hours_worked;
-    }
-
-    public LocalDateTime getShift_start() {
-        return shift_start;
-    }
-
-    public void setShift_start(LocalDateTime shift_start) {
-        this.shift_start = shift_start;
-    }
-
-    public  void addItemToInventory(Product product){
-        inventory.addProduct(product);
-    }
-
-    @Override
-    public void check_in() {
-        if (!is_working) {
-            shift_start = LocalDateTime.now();
-            is_working = true;
-        }
-
-
-    }
-
-    @Override
-    public void check_out() {
-        if (is_working) {
-            //hours_worked += LocalDateTime.now() - shift_start;
-            is_working = false;
-        }
-
-    }
 
 
     @Override
@@ -105,8 +48,8 @@ public class Employee implements Employee_Interface {
     public String toString() {
         StringBuilder string = new StringBuilder();
         string.append("Hallo, wat wil je kopen?\nIk heb in de aanbieding:\n");
-        for (Product product: inventory.getProducts()){
-            string.append( product.getProductName());
+        for (Product product : getProducts()) {
+            string.append(product.getProductName());
             string.append(", waarvan ik er nog ");
             string.append(product.getAmount());
             string.append(" van over heb.\n");
