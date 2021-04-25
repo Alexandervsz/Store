@@ -33,7 +33,6 @@ public class Inventory implements InventoryInterface {
                 return iter_product;
             }
         }
-        System.out.println("false");
         return null;
     }
 
