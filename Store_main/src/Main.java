@@ -22,10 +22,14 @@ public class Main {
         Scanner scanner2 = new Scanner(System.in);
         int userChoice = scanner2.nextInt();
         switch (userChoice) {
-            case 1 -> openShop(employee, customer);
-            case 2 -> combineItems(employee, customer);
-            case 3 -> sellItems(employee, customer);
-            default -> printIntro(employee, customer);
+            case 1:
+                openShop(employee, customer);
+            case 2:
+                combineItems(employee, customer);
+            case 3:
+                sellItems(employee, customer);
+            default:
+                printIntro(employee, customer);
         }
     }
 
