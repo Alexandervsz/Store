@@ -132,7 +132,7 @@ public class Main {
                     break;
                 }
             }
-            System.out.println("Dat product heb ik niet...");
+            System.out.println("Dat product is er niet...");
         }
         return foundProduct;
     }
